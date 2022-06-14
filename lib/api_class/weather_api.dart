@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
+import 'package:location/location.dart';
 
 class WeatherApi {
   String? region;
@@ -11,6 +11,8 @@ class WeatherApi {
   String? cloudImage;
   String? nextDay;
   String? netxtDayTemC;
+  double? long;
+  double? lati;
   WeatherApi(
       {this.cloudImage,
       this.comment,
@@ -19,12 +21,14 @@ class WeatherApi {
       this.netxtDayTemC,
       this.nextDay,
       this.region,
-      this.tempC});
+      this.tempC,
+      this.long,
+      this.lati});
 
   Future<void> getDiffirentProperties() async {
     try {
-      Response response = await get(
-          Uri.parse("https://weatherdbi.herokuapp.com/data/weather/lagos"));
+      Response response = await get(Uri.parse(
+          "https://weatherdbi.herokuapp.com/data/weather/$lati,$long"));
       Map map = await jsonDecode(response.body);
       region = map["region"];
       comment = map["currentConditions"]["comment"];

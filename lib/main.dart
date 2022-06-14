@@ -8,7 +8,7 @@ void main() {
       initialRoute: "loading",
       routes: {
         "loading": (context) => const LoadingScreen(),
-        "weatherReportScreen": (context) => const WeatherReportScreen()
+        "weatherReportScreen": (context) => const WeatherReportScreen(),
       },
       debugShowCheckedModeBanner: false,
     ),
